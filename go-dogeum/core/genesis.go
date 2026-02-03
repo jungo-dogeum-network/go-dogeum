@@ -47,25 +47,26 @@ var errGenesisNoConfig = errors.New("genesis has no chain configuration")
 // Genesis specifies the header fields, state of a genesis block. It also defines hard
 // fork switch-over blocks through the chain configuration.
 type Genesis struct {
-	Config     *params.ChainConfig `json:"config"`
-	Nonce      uint64              `json:"nonce"`
-	Timestamp  uint64              `json:"timestamp"`
-	ExtraData  []byte              `json:"extraData"`
-	GasLimit   uint64              `json:"gasLimit"   gencodec:"required"`
-	Difficulty *big.Int            `json:"difficulty" gencodec:"required"`
-	Mixhash    common.Hash         `json:"mixHash"`
-	Coinbase   common.Address      `json:"coinbase"`
-	Alloc      GenesisAlloc        `json:"alloc"      gencodec:"required"`
+	Config     *params.ChainConfig `json:"config"` // 하드포크 관련 내용 정리
+	Nonce      uint64              `json:"nonce"` // 채굴 논스
+	Timestamp  uint64              `json:"timestamp"` // 블록 생성 시간
+	ExtraData  []byte              `json:"extraData"` // 블록 추가 데이터
+	GasLimit   uint64              `json:"gasLimit"   gencodec:"required"` // 블록 가스 한도
+	Difficulty *big.Int            `json:"difficulty" gencodec:"required"` // 채굴 난이도
+	Mixhash    common.Hash         `json:"mixHash"` // 채굴 믹스해시
+	Coinbase   common.Address      `json:"coinbase"` // 채굴자 주소
+	Alloc      GenesisAlloc        `json:"alloc"      gencodec:"required"` // 제네시스 블록 초기 상태
 
 	// These fields are used for consensus tests. Please don't use them
 	// in actual genesis blocks.
-	Number     uint64      `json:"number"`
-	GasUsed    uint64      `json:"gasUsed"`
-	ParentHash common.Hash `json:"parentHash"`
-	BaseFee    *big.Int    `json:"baseFeePerGas"`
+	Number     uint64      `json:"number"` // 블록 번호
+	GasUsed    uint64      `json:"gasUsed"` // 블록 가스 사용량
+	ParentHash common.Hash `json:"parentHash"` // 부모 블록 해시
+	BaseFee    *big.Int    `json:"baseFeePerGas"` // 블록 기본 수수료
 }
 
 // GenesisAlloc specifies the initial state that is part of the genesis block.
+// 제네시스 블록의 초기 상태를 지정합니다.
 type GenesisAlloc map[common.Address]GenesisAccount
 
 func (ga *GenesisAlloc) UnmarshalJSON(data []byte) error {
@@ -447,9 +448,9 @@ func DefaultGenesisBlock() *Genesis {
 	return &Genesis{
 		Config:     params.MainnetChainConfig,
 		Nonce:      66,
-		ExtraData:  hexutil.MustDecode("0x11bbe8db4e347b4e8c937c1c8370e4b5ed33adb3db69cbdb7a38e1e50b1b82fa"),
-		GasLimit:   5000,
-		Difficulty: big.NewInt(17179869184),
+		ExtraData:  hexutil.MustDecode("0x4152b50118f59e301c42b254d744d4d2e72c4bafe445086224b9d01265cd0dbd "), // default : 0x0
+		GasLimit:   8000000 , // default : 5000
+		Difficulty: big.NewInt(17179), // default : 17179869184 낮을수록 빠름
 		Alloc:      decodePrealloc(mainnetAllocData),
 	}
 }

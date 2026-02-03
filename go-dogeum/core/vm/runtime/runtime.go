@@ -68,6 +68,7 @@ func setDefaults(cfg *Config) {
 			MuirGlacierBlock:    new(big.Int),
 			BerlinBlock:         new(big.Int),
 			LondonBlock:         new(big.Int),
+			PopcatBlock:				 new(big.Int), // 내가 만든 팝캣 하드포크 블록 @ 하드포크 추가 @
 		}
 	}
 

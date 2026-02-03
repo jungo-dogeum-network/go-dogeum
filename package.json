@@ -1,0 +1,20 @@
+{
+  "name": "my-blockchain",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jungo-dogeum-network/go-dogeum.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jungo-dogeum-network/go-dogeum/issues"
+  },
+  "homepage": "https://github.com/jungo-dogeum-network/go-dogeum#readme",
+  "description": ""
+}
