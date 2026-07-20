@@ -1,1 +1,1 @@
-welcome jungo-dogeum-network
+hi, welcome jungo-dogeum-network
